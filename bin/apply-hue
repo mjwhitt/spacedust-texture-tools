@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+ENV['BUNDLE_GEMFILE'] = File.expand_path(File.join(File.dirname(__FILE__), '..', 'Gemfile'))
+
+require 'rubygems'
+require 'bundler/setup'
+require 'chunky_png'
+
+if ARGV.length < 4 || !File.exists?(ARGV[2])
+  puts "Usage: #{$0} hue saturation input.png output.png" 
+  exit
+end
+
+input  = ChunkyPNG::Image.from_file(ARGV[2])
+output = ChunkyPNG::Image.new(input.width, input.height)
+hue    = ARGV[0].to_i
+sat    = ARGV[1].to_f / 100.0
+
+input.width.times do |x|
+  input.height.times do |y|
+    val   = ChunkyPNG::Color.r(input[x,y]) / 255.0
+    alpha = ChunkyPNG::Color.a(input[x,y])
+    output[x,y] = ChunkyPNG::Color.from_hsv(hue, sat, val, alpha)
+  end
+end
+
+output.save(ARGV[3])

@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+ENV['BUNDLE_GEMFILE'] = File.expand_path(File.join(File.dirname(__FILE__), '..', 'Gemfile'))
+
+require 'rubygems'
+require 'bundler/setup'
+require 'chunky_png'
+require 'pp'
+
+if ARGV.length < 2 || !File.exists?(ARGV[0])
+  puts "Usage: #{$0} input.png output.png" 
+  exit
+end
+
+input  = ChunkyPNG::Image.from_file(ARGV[0])
+output = ChunkyPNG::Image.new(input.width, input.height)
+hues   = {}
+
+input.width.times do |x|
+  input.height.times do |y|
+    h, s, v, a = ChunkyPNG::Color.to_hsv(input[x,y], true)
+
+    # new image
+    v = (v*255).to_i
+    output[x,y] = ChunkyPNG::Color.rgba(v, v, v, a)
+
+    # hues & saturations
+    if a > 0
+      hues[h] ||= []
+      hues[h] << (s*100).to_i
+      hues[h].uniq!
+      hues[h].sort!
+    end
+  end
+end
+
+puts "hue : saturations"
+puts "-----------------"
+hues.keys.sort.each do |hue|
+  puts "#{hue}".rjust(3) + " : " + hues[hue].inspect
+end
+
+output.save(ARGV[1])
