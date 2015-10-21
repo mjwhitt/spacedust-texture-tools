@@ -17,9 +17,9 @@ sat    = ARGV[1].to_f / 100.0
 
 input.width.times do |x|
   input.height.times do |y|
-    val   = ChunkyPNG::Color.r(input[x,y]) / 255.0
+    light = ChunkyPNG::Color.r(input[x,y]) / 255.0
     alpha = ChunkyPNG::Color.a(input[x,y])
-    output[x,y] = ChunkyPNG::Color.from_hsv(hue, sat, val, alpha)
+    output[x,y] = ChunkyPNG::Color.from_hsl(hue, sat, light, alpha)
   end
 end
 

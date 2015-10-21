@@ -17,11 +17,11 @@ hues   = {}
 
 input.width.times do |x|
   input.height.times do |y|
-    h, s, v, a = ChunkyPNG::Color.to_hsv(input[x,y], true)
+    h, s, l, a = ChunkyPNG::Color.to_hsl(input[x,y], true)
 
     # new image
-    v = (v*255).to_i
-    output[x,y] = ChunkyPNG::Color.rgba(v, v, v, a)
+    l = (l*255).to_i
+    output[x,y] = ChunkyPNG::Color.rgba(l, l, l, a)
 
     # hues & saturations
     if a > 0

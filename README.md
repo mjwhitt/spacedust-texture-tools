@@ -12,14 +12,14 @@ tools for modifying textures for [spacedust](http://www.spacedust.info)
 
 ![original](examples/water.png)
 
-> ./bin/extract-value examples/water.png examples/water-value.png
+> ./bin/extract-lightness examples/water.png examples/water-lightness.png
 
-![value](examples/water-value.png)
+![lightness](examples/water-lightness.png)
 
->  ./bin/apply-hue 300 50 examples/water-value.png examples/water-hue-300.png
+>  ./bin/apply-hue 300 50 examples/water-lightness.png examples/water-hue-300.png
 
 ![hue 300](examples/water-hue-300.png)
 
->  ./bin/apply-hue 100 50 examples/water-value.png examples/water-hue-100.png
+>  ./bin/apply-hue 100 50 examples/water-lightness.png examples/water-hue-100.png
 
 ![hue 100](examples/water-hue-100.png)
