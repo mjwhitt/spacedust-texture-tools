@@ -16,10 +16,14 @@ tools for modifying textures for [spacedust](http://www.spacedust.info)
 
 ![lightness](examples/water-lightness.png)
 
->  ./bin/apply-hue 300 50 examples/water-lightness.png examples/water-hue-300.png
+>  ./bin/apply-hue 300 39 examples/water-lightness.png examples/water-hue-300.png
 
 ![hue 300](examples/water-hue-300.png)
 
->  ./bin/apply-hue 100 50 examples/water-lightness.png examples/water-hue-100.png
+>  ./bin/apply-hue 100 39 examples/water-lightness.png examples/water-hue-100.png
 
 ![hue 100](examples/water-hue-100.png)
+
+**See Also**
+
+* [Dynamic Colors](http://www.spacedust.info/2015/10/dynamic-colors/)
